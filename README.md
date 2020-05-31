@@ -16,3 +16,7 @@ class HomeController < ApplicationController
 ⑤top.html.erb　#3 add routes
 <p><%= link_to 'start' %></p>
 <p><%= link_to 'start',"/books" %></p>
+
+⑥index.html.erb add(book.id)
+<td><%= link_to "Edit", edit_book_path, class: "edit_#{book.id}" %></td>
+<td><%= link_to "Edit", edit_book_path(book.id), class: "edit_#{book.id}" %></td>
