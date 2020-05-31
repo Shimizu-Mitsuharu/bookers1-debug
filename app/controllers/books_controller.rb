@@ -27,25 +27,25 @@ class BooksController < ApplicationController
   # POST /books
   # POST /books.json
   def create
-    book = Book.new(book_params)
-    if book.save
-      redirect_to book, notice: 'Book was successfully created.'
+    books = Book.new(book_params)
+    if books.save
+      redirect_to books, notice: 'Book was successfully created.'
     else
       flash[:notice] = "error can't be blank"
-      render :index
+      redirect_to books_path
     end
   end
 
   # PATCH/PUT /books/1
   # PATCH/PUT /books/1.json
   def update
-    book = Book.find(params[:id])
-    if book.update(book_params)
+    books = Book.find(params[:id])
+    if books.update(book_params)
       flash[:notice] = "Book was successfully updated."
-      redirect_to book_path(book)
+      redirect_to books_path(books)
     else
       flash[:notice] = "error can't be blank"
-      render :edit
+      redirect_to books_path
     end
   end
 
