@@ -42,10 +42,9 @@ class BooksController < ApplicationController
     books = Book.find(params[:id])
     if books.update(book_params)
       flash[:notice] = "Book was successfully updated."
-      redirect_to books_path(books)
+      redirect_to books
     else
-      flash[:notice] = "error can't be blank"
-      redirect_to books_path
+      redirect_to edit_book_path, notice: "error can't be blank"
     end
   end
 
