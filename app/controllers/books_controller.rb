@@ -9,7 +9,7 @@ class BooksController < ApplicationController
   end
 
   def new
-        @books = Book.all
+    @books = Book.all
     @book = Book.new
   end
 
@@ -27,10 +27,11 @@ class BooksController < ApplicationController
   # POST /books
   # POST /books.json
   def create
-    @book = Book.new(book_params)
-    if @book.save
-      redirect_to @book, notice: 'Book was successfully created.'
+    book = Book.new(book_params)
+    if book.save
+      redirect_to book, notice: 'Book was successfully created.'
     else
+      flash[:notice] = "error can't be blank"
       render :index
     end
   end
@@ -38,9 +39,12 @@ class BooksController < ApplicationController
   # PATCH/PUT /books/1
   # PATCH/PUT /books/1.json
   def update
-    if @book.update()
-      redirect_to @book, notice: 'Book was successfully updated.'
+    book = Book.find(params[:id])
+    if book.update(book_params)
+      flash[:notice] = "Book was successfully updated."
+      redirect_to book_path(book)
     else
+      flash[:notice] = "error can't be blank"
       render :edit
     end
   end
