@@ -1,4 +1,14 @@
 ①config/root.rbに以下を追記
-root :to => 'books#index'
-get 'books' => 'books#new', as: 'books'
+root :to => 'home#top'
+get 'books' => 'books#index', as: 'books'
 
+②view/_form.html.erb　#1を以下のように変更
+<%= form_for(book) do |f| %>
+<%= form_for(@book) do |f| %>
+
+③db/migrate 
+add title:string
+
+④home_controller add "Home"
+class Controller < ApplicationController
+class HomeController < ApplicationController
